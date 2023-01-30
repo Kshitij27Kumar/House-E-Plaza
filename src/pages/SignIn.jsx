@@ -14,8 +14,7 @@ function SignIn() {
   const { email, password } = formData
 
   const onChange = (e) => {
-    setFormData((prevState) => ({
-      ...prevState,
+    setFormData(() => ({
       [e.target.id]: e.target.value,
     }))
   }
@@ -29,9 +28,12 @@ function SignIn() {
         email,
         password
       )
-      if (userCredential.user) navigate('/')
+      if (userCredential.user) {
+        navigate('/')
+        toast.success('Login successful!!')
+      }
     } catch (error) {
-      toast.error('Bad User Credentials')
+      toast.error('Please enter correct credentials!')
     }
   }
   return (

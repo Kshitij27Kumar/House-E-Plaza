@@ -22,8 +22,7 @@ function SignUp() {
   const navigate = useNavigate()
 
   const onChange = (e) => {
-    setFormData((prevState) => ({
-      ...prevState,
+    setFormData(() => ({
       [e.target.id]: e.target.value,
     }))
   }
@@ -53,6 +52,7 @@ function SignUp() {
       await setDoc(doc(db, 'users', user.uid), formDataCopy)
 
       navigate('/')
+      toast.success('Profile created successfully!!')
     } catch (error) {
       toast.error('Something went wrong with the registration')
     }
