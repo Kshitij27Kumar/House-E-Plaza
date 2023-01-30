@@ -14,7 +14,8 @@ function SignIn() {
   const { email, password } = formData
 
   const onChange = (e) => {
-    setFormData(() => ({
+    setFormData((prevState) => ({
+      ...prevState,
       [e.target.id]: e.target.value,
     }))
   }
