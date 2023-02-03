@@ -138,6 +138,9 @@ function CreateListing() {
               case 'running':
                 console.log('Upload is running')
                 break
+              default:
+                console.log('Nothing is happening')
+                break
             }
           },
           (error) => {
