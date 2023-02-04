@@ -18,7 +18,7 @@ function Category() {
   const [listings, setListings] = useState(null)
   const [loading, setLoading] = useState(true)
   const [lastFetchedListing, setLastFetchedListing] = useState(null)
-
+  const [noMoreListings, setNoMoreListings] = useState(true)
   const params = useParams()
 
   useEffect(() => {
@@ -91,6 +91,7 @@ function Category() {
       })
 
       setListings((prevState) => [...prevState, ...listings])
+      setNoMoreListings(querySnap.empty)
       setLoading(false)
     } catch (error) {
       toast.error('Could not fetch listings')
@@ -125,7 +126,9 @@ function Category() {
 
           <br />
           <br />
-          {lastFetchedListing && (
+          {noMoreListings ? (
+            <p>No More Listings</p>
+          ) : (
             <p className='loadMore' onClick={onFetchMoreListings}>
               Load More
             </p>

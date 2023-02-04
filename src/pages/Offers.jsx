@@ -18,7 +18,7 @@ function Offers() {
   const [listings, setListings] = useState(null)
   const [loading, setLoading] = useState(true)
   const [lastFetchedListing, setLastFetchedListing] = useState(null)
-  //const params = useParams()
+  const [noMoreListings, setNoMoreListings] = useState(true)
 
   useEffect(() => {
     const fetchListings = async () => {
@@ -50,6 +50,7 @@ function Offers() {
         })
 
         setListings(listings)
+
         setLoading(false)
       } catch (error) {
         toast.error('Could not fetch listings')
@@ -90,6 +91,7 @@ function Offers() {
       })
 
       setListings((prevState) => [...prevState, ...listings])
+      setNoMoreListings(querySnap.empty)
       setLoading(false)
     } catch (error) {
       toast.error('Could not fetch listings')
@@ -120,7 +122,9 @@ function Offers() {
 
           <br />
           <br />
-          {lastFetchedListing && (
+          {noMoreListings ? (
+            <p>No More Listings</p>
+          ) : (
             <p className='loadMore' onClick={onFetchMoreListings}>
               Load More
             </p>
