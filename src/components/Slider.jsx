@@ -4,14 +4,12 @@ import { collection, getDocs, query, orderBy, limit } from 'firebase/firestore'
 import { db } from '../firebase.config'
 import { Navigation, Pagination, Scrollbar, A11y, Autoplay } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import 'swiper/swiper-bundle.css'
 import Spinner from './Spinner'
 import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
 import 'swiper/css/scrollbar'
 import 'swiper/css/a11y'
-// SwiperCore.use([Navigation, Pagination, Scrollbar, A11y])
 
 function Slider() {
   const [loading, setLoading] = useState(true)
